@@ -1,4 +1,72 @@
 const users = {};
+users[userId] = {
+  coins: 50,
+  character: {
+    name: "Gabrielle",
+    style: "moonlit reader"
+  },
+  cat: {
+    name: "Miso",
+    breed: "ragdoll",
+    personality: "sleepy"
+  }
+};const users = {};
+
+function getUser(id) {
+  if (!users[id]) {
+    users[id] = {
+      coins: 50,
+      character: {
+        name: null,
+        style: null
+      },
+      cat: {
+        name: null,
+        breed: null,
+        personality: null
+      }
+    };
+  }
+  return users[id];
+}if (interaction.commandName === 'create-character') {
+  const name = interaction.options.getString('name');
+  const style = interaction.options.getString('style');
+
+  const user = getUser(interaction.user.id);
+  user.character.name = name;
+  user.character.style = style;
+
+  await interaction.reply(`✨ Your character has been created.\n**Name:** ${name}\n**Style:** ${style}`);
+}if (interaction.commandName === 'create-cat') {
+  const name = interaction.options.getString('name');
+  const breed = interaction.options.getString('breed');
+  const personality = interaction.options.getString('personality');
+
+  const user = getUser(interaction.user.id);
+  user.cat.name = name;
+  user.cat.breed = breed;
+  user.cat.personality = personality;
+
+  await interaction.reply(`🐱 Your cat has been created.\n**Name:** ${name}\n**Breed:** ${breed}\n**Personality:** ${personality}`);
+}if (interaction.commandName === 'profile') {
+  const user = getUser(interaction.user.id);
+
+  const embed = new EmbedBuilder()
+    .setColor(0x8e6cf2)
+    .setTitle("🌙 your profile")
+    .setDescription(
+      `**name:** ${user.character.name || 'not set'}\n` +
+      `**style:** ${user.character.style || 'not set'}\n` +
+      `**coins:** ${user.coins}\n\n` +
+      `🐱 **cat:** ${user.cat.name || 'not set'}\n` +
+      `**breed:** ${user.cat.breed || 'not set'}\n` +
+      `**personality:** ${user.cat.personality || 'not set'}`
+    )
+    .setFooter({ text: "gabrielle’s midnight café ✦ cozy profile" });
+
+  await interaction.reply({ embeds: [embed] });
+}
+const users = {};
 function getUser(id) {
   if (!users[id]) {
     users[id] = { coins: 50 }; // starting money
