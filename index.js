@@ -188,3 +188,88 @@ if (interaction.commandName === 'roll') {
 function randomMood() {
   return moods[Math.floor(Math.random() * moods.length)];
 }await interaction.reply(`📖 You read...\n${randomMood()}`);
+const { EmbedBuilder } = require('discord.js');
+
+function makeEmbed(title, description) {
+  return new EmbedBuilder()
+    .setColor(0x8e6cf2)
+    .setTitle(title)
+    .setDescription(description)
+    .setFooter({ text: "gabrielle’s midnight café ✦ cozy library mode" })
+    .setTimestamp();
+}if (interaction.commandName === 'read') {
+  const embed = makeEmbed(
+    "📚 moonlit library",
+    "🐱 your reading buddy curls beside the lamp.\n\nYou open your book and settle into a quiet chair.\nThe room is warm, the window is glowing, and the library feels still."
+  );
+
+  embed.setImage("YOUR_LIBRARY_IMAGE_URL_HERE");
+
+  await interaction.reply({ embeds: [embed] });
+}const rooms = {
+  library: {
+    name: "moonlit library",
+    image: "https://your-image-url/library.png"
+  },
+  cafe: {
+    name: "midnight café",
+    image: "https://your-image-url/cafe.png"
+  },
+  attic: {
+    name: "rainy attic",
+    image: "https://your-image-url/attic.png"
+  }
+};const room = rooms.library;
+const embed = makeEmbed(
+  `📖 ${room.name}`,
+  "Soft lamp light falls across the pages. Your cat watches the moon."
+);
+embed.setImage(room.image);const { ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
+
+const row = new ActionRowBuilder().addComponents(
+  new ButtonBuilder()
+    .setCustomId('buy_coffee')
+    .setLabel('☕ buy coffee')
+    .setStyle(ButtonStyle.Secondary),
+
+  new ButtonBuilder()
+    .setCustomId('buy_cookie')
+    .setLabel('🍪 buy cookie')
+    .setStyle(ButtonStyle.Secondary),
+
+  new ButtonBuilder()
+    .setCustomId('check_cat')
+    .setLabel('🐱 check cat')
+    .setStyle(ButtonStyle.Primary)
+);await interaction.reply({
+  embeds: [embed],
+  components: [row]
+});const coins = 125;
+const focusBar = "▰▰▰▱▱";
+
+const embed = makeEmbed(
+  "🐱 reading session",
+  `🌙 **coins:** ${coins}\n📖 **focus:** ${focusBar}\n\nYour cat purrs quietly beside your book.`
+);const catMoods = {
+  sleepy: {
+    text: "💤 your cat is tucked into a warm little circle.",
+    image: "https://your-image-url/cat_sleepy.png"
+  },
+  playful: {
+    text: "🐾 your cat bats at the edge of your bookmark.",
+    image: "https://your-image-url/cat_playful.png"
+  }
+};const embed = makeEmbed(
+  "☕ midnight café menu",
+  "Choose something warm and cozy.\n\n☕ **coffee** — 10 coins\n🍪 **cookie** — 5 coins\n🕯️ **candle** — 15 coins"
+);
+embed.setImage("YOUR_CAFE_MENU_IMAGE_URL");const embed = makeEmbed(
+  "🕯️ focus session started",
+  "📚 **room:** moonlit library\n⏳ **time:** 25 minutes\n🐱 **cat mood:** cozy\n\nThe room quiets. Your cat settles beside the lamp."
+);const halfway = makeEmbed(
+  "🌙 halfway there",
+  "The pages keep turning. Your cat blinks slowly and stays close."
+);const done = makeEmbed(
+  "✨ session complete",
+  "You finished your reading session.\n🌙 +15 coins\n🐱 your cat purrs proudly."
+);
