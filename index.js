@@ -47,3 +47,22 @@ client.on(Events.InteractionCreate, async interaction => {
 });
 
 client.login(process.env.TOKEN);
+client.on('ready', async () => {
+  const commands = [
+    {
+      name: 'read',
+      description: 'Read with your cat companion'
+    },
+    {
+      name: 'focus',
+      description: 'Start a cozy focus session'
+    },
+    {
+      name: 'cafe',
+      description: 'Enter the midnight café'
+    }
+  ];
+
+  await client.application.commands.set(commands);
+  console.log("✨ Commands registered");
+});
