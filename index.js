@@ -1,4 +1,10 @@
 const users = {};
+function getUser(id) {
+  if (!users[id]) {
+    users[id] = { coins: 50 }; // starting money
+  }
+  return users[id];
+}
 const { Client, GatewayIntentBits } = require('discord.js');
 
 const client = new Client({
