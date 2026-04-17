@@ -114,3 +114,77 @@ const catMessages = {
   ],
   dreamy: [
     "☁️ your cat seems half-asleep, dreaming under the
+// ☕ /cafe shop
+if (interaction.commandName === 'shop') {
+  await interaction.reply({
+    embeds: [{
+      title: "☕ Midnight Café Menu",
+      description:
+        "🌙 Coffee — 10 coins\n🍪 Cookie — 5 coins\n🕯️ Candle — 15 coins",
+      color: 0x8e6cf2
+    }]
+  });
+}if (interaction.commandName === 'buy') {
+  const item = interaction.options.getString('item');
+  const user = getUser(interaction.user.id);
+
+  if (item === 'coffee' && user.coins >= 10) {
+    user.coins -= 10;
+    await interaction.reply("☕ You sip a warm coffee... the cat purrs beside you 🐱");
+  } else if (item === 'cookie' && user.coins >= 5) {
+    user.coins -= 5;
+    await interaction.reply("🍪 A soft cookie… the cat steals a crumb 😌");
+  } else {
+    await interaction.reply("🌙 Not enough coins...");
+  }
+}// 📚 /read → earn coins
+if (interaction.commandName === 'read') {
+  const user = getUser(interaction.user.id);
+  user.coins += 15;
+
+  await interaction.reply(
+    "📖 You read quietly...\n🌙 +15 coins\n🐱 The cat curls closer."
+  );
+}// 🎮 /roll game
+if (interaction.commandName === 'roll') {
+  const user = getUser(interaction.user.id);
+  const roll = Math.floor(Math.random() * 6) + 1;
+
+  if (roll >= 4) {
+    user.coins += 10;
+    await interaction.reply(`🎲 You rolled ${roll}!\n✨ You win 10 coins`);
+  } else {
+    await interaction.reply(`🎲 You rolled ${roll}… better luck next time`);
+  }
+}// 🎮 /roll game
+if (interaction.commandName === 'roll') {
+  const user = getUser(interaction.user.id);
+  const roll = Math.floor(Math.random() * 6) + 1;
+
+  if (roll >= 4) {
+    user.coins += 10;
+    await interaction.reply(`🎲 You rolled ${roll}!\n✨ You win 10 coins`);
+  } else {
+    await interaction.reply(`🎲 You rolled ${roll}… better luck next time`);
+  }
+}if (interaction.commandName === 'balance') {
+  const user = getUser(interaction.user.id);
+  await interaction.reply(`🌙 You have ${user.coins} coins`);
+}if (interaction.commandName === 'music') {
+  await interaction.reply(
+    "🎧 Cozy music:\nhttps://www.youtube.com/watch?v=5qap5aO4i9A"
+  );
+}if (interaction.commandName === 'movie') {
+  await interaction.reply(
+    "🎬 Movie night:\nUse Discord Activities → Watch Together 🍿"
+  );
+}const moods = [
+  "🐱 The cat blinks slowly at you",
+  "🐾 It stretches beside your book",
+  "🌙 It watches the moon quietly",
+  "💤 It dozes off near you"
+];
+
+function randomMood() {
+  return moods[Math.floor(Math.random() * moods.length)];
+}await interaction.reply(`📖 You read...\n${randomMood()}`);
