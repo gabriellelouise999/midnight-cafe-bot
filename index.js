@@ -66,3 +66,44 @@ client.on('ready', async () => {
   await client.application.commands.set(commands);
   console.log("✨ Commands registered");
 });
+const {
+  Client,
+  GatewayIntentBits,
+  Events,
+  EmbedBuilder,
+} = require('discord.js');
+
+const client = new Client({
+  intents: [GatewayIntentBits.Guilds],
+});
+
+const activeSessions = new Map();
+
+const catMoods = [
+  "sleepy",
+  "curious",
+  "purring",
+  "watchful",
+  "dreamy",
+  "cozy",
+];
+
+const catMessages = {
+  sleepy: [
+    "🐱 your cat has curled into a warm little circle beside your book.",
+    "🌙 your cat blinks slowly, then settles into the lamplight.",
+  ],
+  curious: [
+    "🐾 your cat taps the edge of your page, then watches quietly.",
+    "📚 your cat sniffs the stack of books and decides to stay.",
+  ],
+  purring: [
+    "💜 a soft purr fills the quiet room.",
+    "✨ your cat leans against your arm, purring gently.",
+  ],
+  watchful: [
+    "🌙 your cat sits by the window, keeping watch over the library.",
+    "🕯️ your cat watches the room with calm golden eyes.",
+  ],
+  dreamy: [
+    "☁️ your cat seems half-asleep, dreaming under the
