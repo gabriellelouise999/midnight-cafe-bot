@@ -657,3 +657,62 @@ const books = {
   )
   .setImage(rooms.bay_window.image)
   .setFooter({ text: "gabrielle’s midnight café ✦ reading nook" });
+const embed = new EmbedBuilder()
+  .setColor(0x8e6cf2)
+  .setTitle("🌙 available clubs")
+  .setDescription(
+    "Find your place in the library.\n\n" +
+    "📖 **moonlit readers** — cozy reading sessions\n" +
+    "📜 **poetry circle** — quiet words and soft thoughts\n" +
+    "📸 **photography club** — capture the night\n" +
+    "🌙 **night owls** — late-night energy\n\n" +
+    "*your cat watches quietly… waiting for your choice* 🐱"
+  );if (interaction.commandName === 'join') {
+  const club = interaction.options.getString('club');
+  const user = getUser(interaction.user.id);
+
+  user.club = club;
+
+  await interaction.reply(
+    `✨ You joined **${club}**.\n🐱 Your cat seems curious about your new circle.`
+  );
+}if (user.club === "moonlit readers") {
+  user.coins += 5; // bonus
+}const hour = new Date().getHours();
+if (user.club === "night owls" && (hour >= 22 || hour <= 4)) {
+  user.coins += 10;
+}const rooms = {
+  library: {
+    name: "enchanted library",
+    description: "Books grow from the roots of ancient trees. Soft lights flicker like fireflies.",
+    image: "FOREST_LIBRARY_IMAGE"
+  },
+  bay_window: {
+    name: "mossy window nook",
+    description: "A curved window wrapped in vines, with cushions and moonlight pooling on the floor.",
+    image: "FOREST_WINDOW_IMAGE"
+  },
+  treehouse: {
+    name: "treehouse reading nook",
+    description: "Hidden among branches, with hanging lanterns and whispering leaves.",
+    image: "TREEHOUSE_IMAGE"
+  }
+};user.room = {
+  type: "private",
+  name: "your study nook",
+  decor: []
+};if (interaction.commandName === 'studyroom') {
+  const user = getUser(interaction.user.id);
+
+  const embed = new EmbedBuilder()
+    .setColor(0x8e6cf2)
+    .setTitle("🔒 your private study nook")
+    .setDescription(
+      "A quiet, hidden space just for you.\n\n" +
+      "🧺 blankets: " + user.room.decor.join(", ") + "\n" +
+      "🐱 your cat rests beside you"
+    )
+    .setFooter({ text: "forest library ✦ private space" });
+
+  await interaction.reply({ embeds: [embed], ephemeral: true });
+}🍫 hot chocolate — 12 coinsuser.inventory.push("hot_chocolate");
