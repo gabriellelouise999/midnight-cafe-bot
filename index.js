@@ -491,4 +491,164 @@ const books = {
     user.inventory.push("candle");
     await interaction.reply("🕯️ Candle added to your inventory.");
   }
-});
+});if (interaction.commandName === 'inventory') {
+  const user = getUser(interaction.user.id);
+  const items = user.inventory.length ? user.inventory.map(item => `• ${item}`).join('\n') : "empty";
+
+  const embed = new EmbedBuilder()
+    .setColor(0x8e6cf2)
+    .setTitle("👜 inventory")
+    .setDescription(`🌙 **coins:** ${user.coins}\n\n${items}`)
+    .setFooter({ text: "gabrielle’s midnight café ✦ inventory" });
+
+  await interaction.reply({ embeds: [embed] });
+}const catReactions = {
+  coffee: {
+    mood: "alert",
+    text: "🐱 Your cat perks up and watches the steam curl into the air."
+  },
+  cookie: {
+    mood: "playful",
+    text: "🐾 Your cat watches closely, hoping for crumbs."
+  },
+  wine: {
+    mood: "sleepy",
+    text: "🌙 The room softens, and your cat settles into the lamplight."
+  },
+  tea: {
+    mood: "calm",
+    text: "☁️ Your cat blinks slowly and curls closer."
+  },
+  candle: {
+    mood: "cozy",
+    text: "🕯️ The warm glow makes your cat purr softly."
+  }
+};if (interaction.commandName === 'use') {
+  const item = interaction.options.getString('item');
+  const user = getUser(interaction.user.id);
+
+  const index = user.inventory.indexOf(item);
+  if (index === -1) {
+    await interaction.reply("🌙 You don’t have that item.");
+    return;
+  }
+
+  user.inventory.splice(index, 1);
+
+  const reaction = catReactions[item];
+  if (reaction) {
+    user.catMood = reaction.mood;
+    await interaction.reply(`${reaction.text}\n✨ **${item}** used.`);
+  } else {
+    await interaction.reply(`You used **${item}**.`);
+  }
+}if (interaction.commandName === 'cat') {
+  const user = getUser(interaction.user.id);
+
+  const embed = new EmbedBuilder()
+    .setColor(0x8e6cf2)
+    .setTitle("🐱 your cat")
+    .setDescription(`Current mood: **${user.catMood}**`)
+    .setFooter({ text: "gabrielle’s midnight café ✦ cat companion" });
+
+  await interaction.reply({ embeds: [embed] });
+}if (interaction.commandName === 'music') {
+  const embed = new EmbedBuilder()
+    .setColor(0x8e6cf2)
+    .setTitle("🎧 listening room")
+    .setDescription("Choose the sound that fits the night.");
+
+  const row = new ActionRowBuilder().addComponents(
+    new ButtonBuilder()
+      .setLabel("🌧️ rain")
+      .setStyle(ButtonStyle.Link)
+      .setURL("https://www.youtube.com/watch?v=mPZkdNFkNps"),
+    new ButtonBuilder()
+      .setLabel("☕ café jazz")
+      .setStyle(ButtonStyle.Link)
+      .setURL("https://www.youtube.com/watch?v=Dx5qFachd3A"),
+    new ButtonBuilder()
+      .setLabel("🎧 lofi")
+      .setStyle(ButtonStyle.Link)
+      .setURL("https://www.youtube.com/watch?v=jfKfPfyJRdk"),
+    new ButtonBuilder()
+      .setLabel("🔥 fireplace")
+      .setStyle(ButtonStyle.Link)
+      .setURL("https://www.youtube.com/watch?v=L_LUpnjgPso")
+  );
+
+  await interaction.reply({ embeds: [embed], components: [row] });
+}[
+  { name: 'shop', description: 'Open the midnight café menu' },
+  { name: 'inventory', description: 'View your inventory' },
+  {
+    name: 'use',
+    description: 'Use an item from your inventory',
+    options: [
+      {
+        name: 'item',
+        description: 'The item to use',
+        type: 3,
+        required: true
+      }
+    ]
+  },
+  { name: 'cat', description: 'Check on your cat companion' },
+  { name: 'music', description: 'Open the listening room' }
+]const rooms = {
+  library: {
+    name: "moonlit library",
+    description: "Tall shelves, warm lamplight, and a quiet cat by the books.",
+    image: "YOUR_LIBRARY_IMAGE_URL",
+    unlockCost: 0
+  },
+  bay_window: {
+    name: "bay window nook",
+    description: "A cushioned window seat, moonlight on the glass, and rain beyond the panes.",
+    image: "YOUR_BAY_WINDOW_IMAGE_URL",
+    unlockCost: 80
+  },
+  treehouse: {
+    name: "treehouse reading nook",
+    description: "Wooden shelves, hanging lights, soft wind through the leaves, and a hidden little world above the ground.",
+    image: "YOUR_TREEHOUSE_IMAGE_URL",
+    unlockCost: 150
+  },
+  fireplace: {
+    name: "fireplace corner",
+    description: "A deep chair, a crackling fire, and blankets gathered in warm folds.",
+    image: "YOUR_FIREPLACE_IMAGE_URL",
+    unlockCost: 120
+  }
+};const decorItems = {
+  blanket: {
+    name: "soft blanket",
+    price: 20,
+    description: "Adds warmth and comfort to your reading space."
+  },
+  pillow: {
+    name: "plush pillow",
+    price: 15,
+    description: "Makes every corner feel softer."
+  },
+  lavender_pillow: {
+    name: "lavender pillow",
+    price: 25,
+    description: "A calming little comfort for late-night reading."
+  },
+  knitted_throw: {
+    name: "knitted throw",
+    price: 30,
+    description: "A cozy layer for rainy evenings."
+  }
+};const embed = new EmbedBuilder()
+  .setColor(0x8e6cf2)
+  .setTitle("🪟 bay window nook")
+  .setDescription(
+    "Moonlight spills across the cushions.\n\n" +
+    "🕯️ a lamp glows softly\n" +
+    "🛋️ a blanket is draped across the seat\n" +
+    "🐱 your cat watches the night outside"
+  )
+  .setImage(rooms.bay_window.image)
+  .setFooter({ text: "gabrielle’s midnight café ✦ reading nook" });
