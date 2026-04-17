@@ -871,5 +871,1183 @@ const decorItems = {
     price: 25,
     description: "A calming little comfort for late-night reading."
   }
+};player: {
+  name: "Gabrielle",
+  style: "moonlit reader",
+  level: 1,
+  xp: 0,
+  coins: 50,
+  club: null,
+  currentRoom: "library",
+  unlockedRooms: ["library"]
+}cat: {
+  name: "Miso",
+  breed: "ragdoll",
+  coat: "cream",
+  personality: "sleepy",
+  mood: "cozy",
+  friendship: 0,
+  accessories: []
+}rooms: {
+  library: {
+    name: "enchanted library",
+    description: "Books rest beneath twisted branches and drifting fireflies.",
+    image: "library_image_url",
+    unlockCost: 0
+  }
+}books: {
+  dickinson_hope: {
+    title: '"Hope" is the thing with feathers',
+    author: 'Emily Dickinson',
+    genre: 'poetry',
+    cover: 'cover_url',
+    pages: [
+      'Page 1...',
+      'Page 2...',
+      'Page 3...'
+    ]
+  }
+}{
+  player: {
+    name: "",
+    style: "",
+    level: 1,
+    xp: 0,
+    coins: 50,
+    club: null,
+    currentRoom: "library",
+    unlockedRooms: ["library"]
+  },
+  cat: {
+    name: "",
+    breed: "",
+    coat: "",
+    personality: "",
+    mood: "cozy",
+    friendship: 0,
+    accessories: []
+  },
+  inventory: {
+    cafeItems: [],
+    decor: [],
+    playerAccessories: [],
+    catAccessories: [],
+    books: []
+  },
+  room: {
+    decorPlaced: []
+  },
+  progress: {
+    streak: 0,
+    booksRead: [],
+    questsCompleted: [],
+    unlockedWorlds: []
+  }
+}player: {
+  name: "Gabrielle",
+  style: "moonlit reader",
+  level: 1,
+  xp: 0,
+  coins: 50,
+  club: null,
+  currentRoom: "library",
+  unlockedRooms: ["library"]
+}cat: {
+  name: "Miso",
+  breed: "ragdoll",
+  coat: "cream",
+  personality: "sleepy",
+  mood: "cozy",
+  friendship: 0,
+  accessories: []
+}rooms: {
+  library: {
+    name: "enchanted library",
+    description: "Books rest beneath twisted branches and drifting fireflies.",
+    image: "library_image_url",
+    unlockCost: 0
+  }
+}books: {
+  dickinson_hope: {
+    title: '"Hope" is the thing with feathers',
+    author: 'Emily Dickinson',
+    genre: 'poetry',
+    cover: 'cover_url',
+    pages: [
+      'Page 1...',
+      'Page 2...',
+      'Page 3...'
+    ]
+  }
+}{
+  player: {
+    name: "",
+    style: "",
+    level: 1,
+    xp: 0,
+    coins: 50,
+    club: null,
+    currentRoom: "library",
+    unlockedRooms: ["library"]
+  },
+  cat: {
+    name: "",
+    breed: "",
+    coat: "",
+    personality: "",
+    mood: "cozy",
+    friendship: 0,
+    accessories: []
+  },
+  inventory: {
+    cafeItems: [],
+    decor: [],
+    playerAccessories: [],
+    catAccessories: [],
+    books: []
+  },
+  room: {
+    decorPlaced: []
+  },
+  progress: {
+    streak: 0,
+    booksRead: [],
+    questsCompleted: [],
+    unlockedWorlds: []
+  }
+}learning: {
+  psychology: 0,
+  history: 0,
+  philosophy: 0,
+  english: 0,
+  french: 0
+}const embed = new EmbedBuilder()
+  .setColor(0x8e6cf2)
+  .setTitle("🌿 learning wing")
+  .setDescription(
+    "Quiet paths lead to different forms of knowledge.\n\n" +
+    "🧠 psychology\n" +
+    "🏛️ history\n" +
+    "🕯️ philosophy\n" +
+    "📖 literature\n" +
+    "🇫🇷 french\n\n" +
+    "*your cat follows quietly beside you* 🐱"
+  );
+const users = {};
+
+function getUser(id) {
+  if (!users[id]) {
+    users[id] = {
+      player: {
+        name: null,
+        style: null,
+        level: 1,
+        xp: 0,
+        coins: 50,
+        currentRoom: "library"
+      },
+      cat: {
+        name: null,
+        breed: null,
+        personality: null,
+        mood: "cozy"
+      },
+      inventory: [],
+      room: {
+        name: "private study nook",
+        decor: []
+      }
+    };
+  }
+  return users[id];
+}function addXP(user, amount) {
+  user.player.xp += amount;
+
+  while (user.player.xp >= user.player.level * 100) {
+    user.player.xp -= user.player.level * 100;
+    user.player.level += 1;
+    user.player.coins += 25;
+  }
+}const shopItems = {
+  coffee: { name: "coffee", price: 10, type: "cafe" },
+  cookie: { name: "cookie", price: 5, type: "cafe" },
+  wine: { name: "evening wine", price: 15, type: "cafe" },
+  tea: { name: "herbal tea", price: 12, type: "cafe" },
+  hot_chocolate: { name: "hot chocolate", price: 12, type: "cafe" },
+  candle: { name: "candle", price: 15, type: "decor" },
+  blanket: { name: "blanket", price: 20, type: "decor" },
+  pillow: { name: "pillow", price: 15, type: "decor" }
+};const rooms = {
+  library: {
+    name: "enchanted library",
+    description: "Books rest beneath twisted branches and drifting fireflies."
+  },
+  studyroom: {
+    name: "private study nook",
+    description: "A hidden little corner with soft lamplight, pillows, and your cat nearby."
+  }
+};study: {
+  subjects: {
+    psychology: 0,
+    history: 0,
+    philosophy: 0,
+    english: 0,
+    french: 0
+  },
+  group: null
+}const users = {};
+
+function getUser(id) {
+  if (!users[id]) {
+    users[id] = {
+      player: {
+        name: null,
+        style: null,
+        level: 1,
+        xp: 0,
+        coins: 50,
+        currentRoom: "library"
+      },
+      cat: {
+        name: null,
+        breed: null,
+        personality: null,
+        mood: "cozy"
+      },
+      inventory: [],
+      room: {
+        name: "private study nook",
+        decor: [],
+        profileDisplay: {
+          interests: [],
+          authors: [],
+          books: [],
+          movies: [],
+          music: [],
+          subjects: []
+        }
+      }
+    };
+  }
+  return users[id];
+}if (interaction.commandName === 'setnook') {
+  const category = interaction.options.getString('category');
+  const value = interaction.options.getString('value');
+
+  const user = getUser(interaction.user.id);
+
+  if (!user.room.profileDisplay[category]) {
+    await interaction.reply({ content: "That category doesn’t exist.", ephemeral: true });
+    return;
+  }
+
+  user.room.profileDisplay[category] = value
+    .split(',')
+    .map(v => v.trim())
+    .filter(Boolean);
+
+  await interaction.reply({
+    content: `✨ Your study nook now displays your **${category}**.`,
+    ephemeral: true
+  });
+}if (interaction.commandName === 'studyroom') {
+  const user = getUser(interaction.user.id);
+
+  const decorText = user.room.decor.length
+    ? user.room.decor.map(item => `• ${item}`).join('\n')
+    : "• soft lamplight\n• a quiet chair\n• your cat nearby";
+
+  const display = user.room.profileDisplay;
+
+  const formatList = (arr, fallback = "not set") =>
+    arr.length ? arr.join(", ") : fallback;
+
+  const embed = new EmbedBuilder()
+    .setColor(0x8e6cf2)
+    .setTitle("🔒 your private study nook")
+    .setDescription(
+      "A hidden little room just for you.\n\n" +
+      "🌿 vines curl around the shelves\n" +
+      "✨ fireflies drift near the window\n" +
+      "🐱 your cat rests beside your books\n\n" +
+      `**decor**\n${decorText}\n\n` +
+      `**interests**\n${formatList(display.interests)}\n\n` +
+      `**favourite authors**\n${formatList(display.authors)}\n\n` +
+      `**favourite books**\n${formatList(display.books)}\n\n` +
+      `**favourite films / shows**\n${formatList(display.movies)}\n\n` +
+      `**favourite music**\n${formatList(display.music)}\n\n` +
+      `**favourite subjects**\n${formatList(display.subjects)}`
+    )
+    .setFooter({ text: "enchanted library ✦ private space" });
+
+  await interaction.reply({ embeds: [embed], ephemeral: true });
+}
+{
+  name: 'setnook',
+  description: 'Set what your private study nook displays',
+  options: [
+    {
+      name: 'category',
+      description: 'Which part of your nook profile to update',
+      type: 3,
+      required: true,
+      choices: [
+        { name: 'interests', value: 'interests' },
+        { name: 'favourite authors', value: 'authors' },
+        { name: 'favourite books', value: 'books' },
+        { name: 'favourite films / shows', value: 'movies' },
+        { name: 'favourite music', value: 'music' },
+        { name: 'favourite subjects', value: 'subjects' }
+      ]
+    },
+    {
+      name: 'value',
+      description: 'Comma-separated list',
+      type: 3,
+      required: true
+    }
+  ]
+}
+const rooms = {
+  hammock: {
+    name: "forest hammock nook",
+    description: "A woven hammock hangs between old trees, with lantern light, drifting fireflies, and a soft blanket tucked at your side.",
+    image: "HAMMOCK_IMAGE_URL",
+    unlockCost: 100
+  }
 };
+reminders: {
+  reading: true,
+  study: true,
+  time: "20:00"
+}common_room: {
+  name: "lantern common room",
+  description: "A warm shared space with low chairs, tea on the tables, and quiet conversations beneath hanging lanterns."
+}law: {
+  name: "lantern court",
+  description: "Tall arched shelves hold old legal volumes, while gold-lit lanterns flicker above polished wood and quiet debate.",
+  image: "LAW_ROOM_IMAGE_URL"
+}
+player: {
+  name: "",
+  style: "",
+  level: 1,
+  xp: 0,
+  coins: 50,
+  currentRoom: "library",
+  unlockedRooms: ["library", "studyroom"]
+}
+cat: {
+  name: "",
+  breed: "",
+  personality: "",
+  mood: "cozy",
+  friendship: 0
+}
+shopItems: {
+  coffee: { name: "coffee", price: 10, type: "cafe" },
+  cookie: { name: "cookie", price: 5, type: "cafe" },
+  wine: { name: "evening wine", price: 15, type: "cafe" },
+  tea: { name: "herbal tea", price: 12, type: "cafe" },
+  hot_chocolate: { name: "hot chocolate", price: 12, type: "cafe" },
+  candle: { name: "candle", price: 15, type: "decor" },
+  blanket: { name: "blanket", price: 20, type: "decor" },
+  pillow: { name: "pillow", price: 15, type: "decor" }
+}
+inventory: {
+  items: [],
+  decorPlaced: []
+}
+room: {
+  name: "private study nook",
+  decor: [],
+  profileDisplay: {
+    interests: [],
+    authors: [],
+    books: [],
+    movies: [],
+    music: [],
+    subjects: []
+  }
+}
+hammock: {
+  name: "forest hammock nook",
+  description: "A woven hammock hangs between old trees, with lantern light and fireflies drifting through the branches.",
+  unlockCost: 100
+}
+common_room: {
+  name: "lantern common room",
+  description: "A warm shared space with tea on the tables, low chairs, and soft conversations beneath hanging lanterns."
+}
+law: {
+  name: "lantern court",
+  description: "Tall shelves of legal volumes rise beneath flickering lanterns, with polished desks and old casebooks waiting to be opened."
+}
+reminders: {
+  reading: true,
+  study: true,
+  time: "20:00"
+}
+{
+  player: {
+    name: "",
+    style: "",
+    level: 1,
+    xp: 0,
+    coins: 50,
+    currentRoom: "library",
+    unlockedRooms: ["library", "studyroom"]
+  },
+  cat: {
+    name: "",
+    breed: "",
+    personality: "",
+    mood: "cozy",
+    friendship: 0
+  },
+  inventory: {
+    items: [],
+    decorPlaced: []
+  },
+  room: {
+    name: "private study nook",
+    decor: [],
+    profileDisplay: {
+      interests: [],
+      authors: [],
+      books: [],
+      movies: [],
+      music: [],
+      subjects: []
+    }
+  },
+  reminders: {
+    reading: true,
+    study: true,
+    time: "20:00"
+  },
+  progress: {
+    questsCompleted: [],
+    fairyVisits: 0
+  }
+}
+player: {
+  name: "",
+  style: "",
+  level: 1,
+  xp: 0,
+  coins: 50,
+  currentRoom: "library",
+  unlockedRooms: ["library", "studyroom"]
+}
+cat: {
+  name: "",
+  breed: "",
+  personality: "",
+  mood: "cozy",
+  friendship: 0
+}
+shopItems: {
+  coffee: { name: "coffee", price: 10, type: "cafe" },
+  cookie: { name: "cookie", price: 5, type: "cafe" },
+  wine: { name: "evening wine", price: 15, type: "cafe" },
+  tea: { name: "herbal tea", price: 12, type: "cafe" },
+  hot_chocolate: { name: "hot chocolate", price: 12, type: "cafe" },
+  candle: { name: "candle", price: 15, type: "decor" },
+  blanket: { name: "blanket", price: 20, type: "decor" },
+  pillow: { name: "pillow", price: 15, type: "decor" }
+}
+inventory: {
+  items: [],
+  decorPlaced: []
+}
+room: {
+  name: "private study nook",
+  decor: [],
+  profileDisplay: {
+    interests: [],
+    authors: [],
+    books: [],
+    movies: [],
+    music: [],
+    subjects: []
+  }
+}
+hammock: {
+  name: "forest hammock nook",
+  description: "A woven hammock hangs between old trees, with lantern light and fireflies drifting through the branches.",
+  unlockCost: 100
+}
+common_room: {
+  name: "lantern common room",
+  description: "A warm shared space with tea on the tables, low chairs, and soft conversations beneath hanging lanterns."
+}
+law: {
+  name: "lantern court",
+  description: "Tall shelves of legal volumes rise beneath flickering lanterns, with polished desks and old casebooks waiting to be opened."
+}
+reminders: {
+  reading: true,
+  study: true,
+  time: "20:00"
+}
+{
+  player: {
+    name: "",
+    style: "",
+    level: 1,
+    xp: 0,
+    coins: 50,
+    currentRoom: "library",
+    unlockedRooms: ["library", "studyroom"]
+  },
+  cat: {
+    name: "",
+    breed: "",
+    personality: "",
+    mood: "cozy",
+    friendship: 0
+  },
+  inventory: {
+    items: [],
+    decorPlaced: []
+  },
+  room: {
+    name: "private study nook",
+    decor: [],
+    profileDisplay: {
+      interests: [],
+      authors: [],
+      books: [],
+      movies: [],
+      music: [],
+      subjects: []
+    }
+  },
+  reminders: {
+    reading: true,
+    study: true,
+    time: "20:00"
+  },
+  progress: {
+    questsCompleted: [],
+    fairyVisits: 0
+  }
+}
+const {
+  Client,
+  GatewayIntentBits,
+  Events,
+  EmbedBuilder,
+} = require('discord.js');
+
+const client = new Client({
+  intents: [GatewayIntentBits.Guilds],
+});
+
+const users = {};
+
+const shopItems = {
+  coffee: { name: "coffee", price: 10, type: "cafe" },
+  cookie: { name: "cookie", price: 5, type: "cafe" },
+  wine: { name: "evening wine", price: 15, type: "cafe" },
+  tea: { name: "herbal tea", price: 12, type: "cafe" },
+  hot_chocolate: { name: "hot chocolate", price: 12, type: "cafe" },
+  candle: { name: "candle", price: 15, type: "decor" },
+  blanket: { name: "blanket", price: 20, type: "decor" },
+  pillow: { name: "pillow", price: 15, type: "decor" },
+};
+
+const rooms = {
+  library: {
+    name: "enchanted library",
+    description:
+      "Books rest beneath twisted branches and drifting fireflies. The shelves glow softly in the moonlight.",
+  },
+  studyroom: {
+    name: "private study nook",
+    description:
+      "A hidden little room with soft lamplight, pillows, blankets, and your cat nearby.",
+  },
+  hammock: {
+    name: "forest hammock nook",
+    description:
+      "A woven hammock hangs between old trees, with lantern light and fireflies drifting through the branches.",
+  },
+  common_room: {
+    name: "lantern common room",
+    description:
+      "A warm shared space with tea on the tables, low chairs, and soft conversation beneath hanging lanterns.",
+  },
+  law: {
+    name: "lantern court",
+    description:
+      "Tall shelves of legal volumes rise beneath flickering lanterns, with polished desks and old casebooks waiting to be opened.",
+  },
+};
+
+const fairyMessages = [
+  "✨ a fairy settles on the edge of your bookshelf for a moment, then disappears into the lamplight.",
+  "🧚 a little glow drifts past and leaves a silver bookmark behind.",
+  "🌙 the fairies seem pleased with tonight’s reading.",
+  "✨ a soft shimmer gathers near your window, like tiny wings in the dark.",
+];
+
+function pickRandom(arr) {
+  return arr[Math.floor(Math.random() * arr.length)];
+}
+
+function makeEmbed(title, description) {
+  return new EmbedBuilder()
+    .setColor(0x8e6cf2)
+    .setTitle(title)
+    .setDescription(description)
+    .setFooter({ text: "gabrielle’s midnight café ✦ enchanted library" })
+    .setTimestamp();
+}
+
+function getUser(id) {
+  if (!users[id]) {
+    users[id] = {
+      player: {
+        name: null,
+        style: null,
+        level: 1,
+        xp: 0,
+        coins: 50,
+        currentRoom: "library",
+        unlockedRooms: ["library", "studyroom"],
+      },
+      cat: {
+        name: null,
+        breed: null,
+        personality: null,
+        mood: "cozy",
+        friendship: 0,
+      },
+      inventory: {
+        items: [],
+        decorPlaced: [],
+      },
+      room: {
+        name: "private study nook",
+        decor: [],
+        profileDisplay: {
+          interests: [],
+          authors: [],
+          books: [],
+          movies: [],
+          music: [],
+          subjects: [],
+        },
+      },
+      reminders: {
+        reading: true,
+        study: true,
+        time: "20:00",
+      },
+      progress: {
+        fairyVisits: 0,
+      },
+    };
+  }
+  return users[id];
+}
+
+function addXP(user, amount) {
+  user.player.xp += amount;
+  let leveledUp = false;
+
+  while (user.player.xp >= user.player.level * 100) {
+    user.player.xp -= user.player.level * 100;
+    user.player.level += 1;
+    user.player.coins += 25;
+    leveledUp = true;
+
+    if (user.player.level >= 2 && !user.player.unlockedRooms.includes("hammock")) {
+      user.player.unlockedRooms.push("hammock");
+    }
+
+    if (user.player.level >= 3 && !user.player.unlockedRooms.includes("common_room")) {
+      user.player.unlockedRooms.push("common_room");
+    }
+
+    if (user.player.level >= 4 && !user.player.unlockedRooms.includes("law")) {
+      user.player.unlockedRooms.push("law");
+    }
+  }
+
+  return leveledUp;
+}
+
+function formatList(arr, fallback = "not set") {
+  return arr.length ? arr.join(", ") : fallback;
+}
+
+client.once(Events.ClientReady, async () => {
+  console.log(`🌙 Logged in as ${client.user.tag}`);
+
+  const commands = [
+    {
+      name: "create-character",
+      description: "Create your character",
+      options: [
+        {
+          name: "name",
+          description: "Your character name",
+          type: 3,
+          required: true,
+        },
+        {
+          name: "style",
+          description: "Your aesthetic style",
+          type: 3,
+          required: true,
+        },
+      ],
+    },
+    {
+      name: "create-cat",
+      description: "Create your cat companion",
+      options: [
+        {
+          name: "name",
+          description: "Your cat's name",
+          type: 3,
+          required: true,
+        },
+        {
+          name: "breed",
+          description: "Your cat's breed",
+          type: 3,
+          required: true,
+        },
+        {
+          name: "personality",
+          description: "Your cat's personality",
+          type: 3,
+          required: true,
+        },
+      ],
+    },
+    {
+      name: "profile",
+      description: "View your profile",
+    },
+    {
+      name: "read",
+      description: "Spend some quiet time reading",
+    },
+    {
+      name: "shop",
+      description: "Open the café and décor shop",
+    },
+    {
+      name: "buy",
+      description: "Buy an item from the shop",
+      options: [
+        {
+          name: "item",
+          description: "The item to buy",
+          type: 3,
+          required: true,
+          choices: [
+            { name: "coffee", value: "coffee" },
+            { name: "cookie", value: "cookie" },
+            { name: "evening wine", value: "wine" },
+            { name: "herbal tea", value: "tea" },
+            { name: "hot chocolate", value: "hot_chocolate" },
+            { name: "candle", value: "candle" },
+            { name: "blanket", value: "blanket" },
+            { name: "pillow", value: "pillow" },
+          ],
+        },
+      ],
+    },
+    {
+      name: "inventory",
+      description: "View your inventory",
+    },
+    {
+      name: "studyroom",
+      description: "View your private study nook",
+    },
+    {
+      name: "setnook",
+      description: "Set what your private nook displays",
+      options: [
+        {
+          name: "category",
+          description: "What to update",
+          type: 3,
+          required: true,
+          choices: [
+            { name: "interests", value: "interests" },
+            { name: "favourite authors", value: "authors" },
+            { name: "favourite books", value: "books" },
+            { name: "favourite films / shows", value: "movies" },
+            { name: "favourite music", value: "music" },
+            { name: "favourite subjects", value: "subjects" },
+          ],
+        },
+        {
+          name: "value",
+          description: "Comma-separated list",
+          type: 3,
+          required: true,
+        },
+      ],
+    },
+    {
+      name: "rooms",
+      description: "View your unlocked rooms",
+    },
+    {
+      name: "go",
+      description: "Travel to a room",
+      options: [
+        {
+          name: "room",
+          description: "The room to visit",
+          type: 3,
+          required: true,
+          choices: [
+            { name: "enchanted library", value: "library" },
+            { name: "private study nook", value: "studyroom" },
+            { name: "forest hammock nook", value: "hammock" },
+            { name: "lantern common room", value: "common_room" },
+            { name: "lantern court", value: "law" },
+          ],
+        },
+      ],
+    },
+    {
+      name: "reminders",
+      description: "View your reminder settings",
+    },
+    {
+      name: "setreminder",
+      description: "Adjust your reminder settings",
+      options: [
+        {
+          name: "type",
+          description: "Which reminder to change",
+          type: 3,
+          required: true,
+          choices: [
+            { name: "reading", value: "reading" },
+            { name: "study", value: "study" },
+          ],
+        },
+        {
+          name: "enabled",
+          description: "Turn this reminder on or off",
+          type: 5,
+          required: true,
+        },
+      ],
+    },
+    {
+      name: "fairy",
+      description: "See whether the fairies visit tonight",
+    },
+    {
+      name: "social",
+      description: "Spend time in the common room",
+    },
+  ];
+
+  await client.application.commands.set(commands);
+  console.log("✨ Commands registered");
+});
+
+client.on(Events.InteractionCreate, async (interaction) => {
+  if (!interaction.isChatInputCommand()) return;
+
+  const user = getUser(interaction.user.id);
+
+  if (interaction.commandName === "create-character") {
+    const name = interaction.options.getString("name");
+    const style = interaction.options.getString("style");
+
+    user.player.name = name;
+    user.player.style = style;
+
+    const embed = makeEmbed(
+      "✨ character created",
+      `**name:** ${name}\n**style:** ${style}\n\nYour place in the enchanted library begins here.`
+    );
+
+    await interaction.reply({ embeds: [embed] });
+    return;
+  }
+
+  if (interaction.commandName === "create-cat") {
+    const name = interaction.options.getString("name");
+    const breed = interaction.options.getString("breed");
+    const personality = interaction.options.getString("personality");
+
+    user.cat.name = name;
+    user.cat.breed = breed;
+    user.cat.personality = personality;
+
+    const embed = makeEmbed(
+      "🐱 cat companion created",
+      `**name:** ${name}\n**breed:** ${breed}\n**personality:** ${personality}\n\nA soft little presence now follows you through the library.`
+    );
+
+    await interaction.reply({ embeds: [embed] });
+    return;
+  }
+
+  if (interaction.commandName === "profile") {
+    const embed = makeEmbed(
+      "🌙 your profile",
+      `**name:** ${user.player.name || "not set"}\n` +
+        `**style:** ${user.player.style || "not set"}\n` +
+        `**level:** ${user.player.level}\n` +
+        `**xp:** ${user.player.xp}/${user.player.level * 100}\n` +
+        `**coins:** ${user.player.coins}\n` +
+        `**current room:** ${rooms[user.player.currentRoom].name}\n\n` +
+        `🐱 **cat:** ${user.cat.name || "not set"}\n` +
+        `**breed:** ${user.cat.breed || "not set"}\n` +
+        `**personality:** ${user.cat.personality || "not set"}\n` +
+        `**mood:** ${user.cat.mood}`
+    );
+
+    await interaction.reply({ embeds: [embed] });
+    return;
+  }
+
+  if (interaction.commandName === "read") {
+    user.player.coins += 15;
+    const leveledUp = addXP(user, 20);
+
+    let desc =
+      `📖 You settle into the lamplight and read quietly for a while.\n` +
+      `🐱 ${user.cat.name || "Your cat"} stays close beside the pages.\n\n` +
+      `🌙 +15 coins\n✨ +20 XP`;
+
+    if (Math.random() < 0.35) {
+      user.progress.fairyVisits += 1;
+      desc += `\n\n${pickRandom(fairyMessages)}`;
+    }
+
+    if (leveledUp) {
+      desc += `\n\n💜 You reached **level ${user.player.level}** and received **+25 bonus coins**.`;
+    }
+
+    const embed = makeEmbed("📚 quiet reading", desc);
+    await interaction.reply({ embeds: [embed] });
+    return;
+  }
+
+  if (interaction.commandName === "shop") {
+    const embed = makeEmbed(
+      "☕ midnight café & nook shop",
+      `☕ **coffee** — 10 coins\n` +
+        `🍪 **cookie** — 5 coins\n` +
+        `🍷 **evening wine** — 15 coins\n` +
+        `🌿 **herbal tea** — 12 coins\n` +
+        `🍫 **hot chocolate** — 12 coins\n` +
+        `🕯️ **candle** — 15 coins\n` +
+        `🧺 **blanket** — 20 coins\n` +
+        `🛏️ **pillow** — 15 coins\n\n` +
+        `*The café glows softly while your cat watches from the window.*`
+    );
+
+    await interaction.reply({ embeds: [embed] });
+    return;
+  }
+
+  if (interaction.commandName === "buy") {
+    const itemKey = interaction.options.getString("item");
+    const item = shopItems[itemKey];
+
+    if (!item) {
+      await interaction.reply({ content: "That item does not exist.", ephemeral: true });
+      return;
+    }
+
+    if (user.player.coins < item.price) {
+      await interaction.reply({ content: "🌙 Not enough coins for that.", ephemeral: true });
+      return;
+    }
+
+    user.player.coins -= item.price;
+    user.inventory.items.push(itemKey);
+
+    const embed = makeEmbed(
+      "🛍️ purchase complete",
+      `You bought **${item.name}** for **${item.price} coins**.\n\n🌙 remaining coins: ${user.player.coins}`
+    );
+
+    await interaction.reply({ embeds: [embed] });
+    return;
+  }
+
+  if (interaction.commandName === "inventory") {
+    const items = user.inventory.items.length
+      ? user.inventory.items.map((i) => `• ${shopItems[i]?.name || i}`).join("\n")
+      : "empty";
+
+    const embed = makeEmbed(
+      "👜 inventory",
+      `🌙 **coins:** ${user.player.coins}\n\n${items}`
+    );
+
+    await interaction.reply({ embeds: [embed] });
+    return;
+  }
+
+  if (interaction.commandName === "studyroom") {
+    const decorText = user.room.decor.length
+      ? user.room.decor.map((item) => `• ${item}`).join("\n")
+      : "• soft lamplight\n• a quiet chair\n• your cat nearby";
+
+    const display = user.room.profileDisplay;
+
+    const embed = makeEmbed(
+      "🔒 your private study nook",
+      `A hidden little room just for you.\n\n` +
+        `🌿 vines curl around the shelves\n` +
+        `✨ fireflies drift near the window\n` +
+        `🐱 ${user.cat.name || "your cat"} rests beside your books\n\n` +
+        `**decor**\n${decorText}\n\n` +
+        `**interests**\n${formatList(display.interests)}\n\n` +
+        `**favourite authors**\n${formatList(display.authors)}\n\n` +
+        `**favourite books**\n${formatList(display.books)}\n\n` +
+        `**favourite films / shows**\n${formatList(display.movies)}\n\n` +
+        `**favourite music**\n${formatList(display.music)}\n\n` +
+        `**favourite subjects**\n${formatList(display.subjects)}`
+    );
+
+    await interaction.reply({ embeds: [embed], ephemeral: true });
+    return;
+  }
+
+  if (interaction.commandName === "setnook") {
+    const category = interaction.options.getString("category");
+    const value = interaction.options.getString("value");
+
+    if (!user.room.profileDisplay[category]) {
+      await interaction.reply({ content: "That nook category does not exist.", ephemeral: true });
+      return;
+    }
+
+    user.room.profileDisplay[category] = value
+      .split(",")
+      .map((v) => v.trim())
+      .filter(Boolean);
+
+    await interaction.reply({
+      content: `✨ Your study nook now displays your **${category}**.`,
+      ephemeral: true,
+    });
+    return;
+  }
+
+  if (interaction.commandName === "rooms") {
+    const roomList = user.player.unlockedRooms
+      .map((roomKey) => `• ${rooms[roomKey].name}`)
+      .join("\n");
+
+    const embed = makeEmbed(
+      "🏡 unlocked rooms",
+      `${roomList}\n\n**current room:** ${rooms[user.player.currentRoom].name}`
+    );
+
+    await interaction.reply({ embeds: [embed] });
+    return;
+  }
+
+  if (interaction.commandName === "go") {
+    const roomKey = interaction.options.getString("room");
+
+    if (!user.player.unlockedRooms.includes(roomKey)) {
+      await interaction.reply({
+        content: "🌙 You have not unlocked that room yet.",
+        ephemeral: true,
+      });
+      return;
+    }
+
+    user.player.currentRoom = roomKey;
+
+    const embed = makeEmbed(
+      `🚪 ${rooms[roomKey].name}`,
+      rooms[roomKey].description + `\n\n🐱 ${user.cat.name || "Your cat"} follows quietly behind you.`
+    );
+
+    await interaction.reply({ embeds: [embed] });
+    return;
+  }
+
+  if (interaction.commandName === "reminders") {
+    const embed = makeEmbed(
+      "⏰ reminder settings",
+      `📚 reading reminders: **${user.reminders.reading ? "on" : "off"}**\n` +
+        `🕯️ study reminders: **${user.reminders.study ? "on" : "off"}**\n` +
+        `🌙 reminder time: **${user.reminders.time}**`
+    );
+
+    await interaction.reply({ embeds: [embed], ephemeral: true });
+    return;
+  }
+
+  if (interaction.commandName === "setreminder") {
+    const type = interaction.options.getString("type");
+    const enabled = interaction.options.getBoolean("enabled");
+
+    user.reminders[type] = enabled;
+
+    await interaction.reply({
+      content: `✨ Your **${type}** reminders are now **${enabled ? "on" : "off"}**.`,
+      ephemeral: true,
+    });
+    return;
+  }
+
+  if (interaction.commandName === "fairy") {
+    user.progress.fairyVisits += 1;
+
+    const embed = makeEmbed(
+      "🧚 fairy visit",
+      pickRandom(fairyMessages) + `\n\n🌙 total fairy visits: ${user.progress.fairyVisits}`
+    );
+
+    await interaction.reply({ embeds: [embed] });
+    return;
+  }
+
+  if (interaction.commandName === "social") {
+    user.player.coins += 5;
+    const leveledUp = addXP(user, 5);
+
+    let desc =
+      `You spend a little while in the lantern common room, listening to quiet conversation and shared study talk.\n\n` +
+      `🌙 +5 coins\n✨ +5 XP`;
+
+    if (leveledUp) {
+      desc += `\n\n💜 You reached **level ${user.player.level}** and received **+25 bonus coins**.`;
+    }
+
+    const embed = makeEmbed("🫖 lantern common room", desc);
+    await interaction.reply({ embeds: [embed] });
+    return;
+  }
+});
+
+client.login(process.env.TOKEN);
+{
+  "name": "midnight-cafe-bot",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "discord.js": "^14.15.3"
+  }
+}
 
