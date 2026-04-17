@@ -407,3 +407,23 @@ if (item === 'candle' && user.coins >= 15) {
     "🕯️ You light a small candle.\n✨ The room glows warmer… your cat curls closer."
   );
 }embed.setImage("https://i.imgur.com/YOUR_CAFE_IMAGE.png");
+const books = {
+  moonlit_poems: {
+    title: "Moonlit Poems",
+    author: "Library Collection",
+    genre: "poetry",
+    pages: [
+      "Page 1 text here...",
+      "Page 2 text here...",
+      "Page 3 text here..."
+    ],
+    cover: "https://your-image-url/poem-cover.png"
+  }
+};{
+  title: "Moonlit Poems",
+  pages: ["...", "..."],
+  audioPages: [
+    "audio/page1.mp3",
+    "audio/page2.mp3"
+  ]
+}
