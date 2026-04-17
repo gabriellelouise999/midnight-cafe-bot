@@ -716,3 +716,35 @@ if (user.club === "night owls" && (hour >= 22 || hour <= 4)) {
 
   await interaction.reply({ embeds: [embed], ephemeral: true });
 }🍫 hot chocolate — 12 coinsuser.inventory.push("hot_chocolate");
+hot_chocolate: {
+  mood: "cozy",
+  text: "🍫 Warm and sweet… your cat curls closer as the night softens."
+}const books = {
+  poe: {
+    title: "Selected Poems",
+    author: "Edgar Allan Poe",
+    pages: [
+      "Once upon a midnight dreary...",
+      "While I pondered, weak and weary..."
+    ]
+  },
+  dickinson: {
+    title: "Poems",
+    author: "Emily Dickinson",
+    pages: [
+      "Because I could not stop for Death...",
+      "He kindly stopped for me..."
+    ]
+  }
+};if (interaction.commandName === 'readbook') {
+  const book = books.poe;
+
+  const embed = new EmbedBuilder()
+    .setColor(0x8e6cf2)
+    .setTitle(`📖 ${book.title}`)
+    .setDescription(book.pages[0])
+    .setFooter({ text: "page 1" });
+
+  await interaction.reply({ embeds: [embed] });
+}"🐱 Miso settles beside the glowing mushrooms as you read."
+"🌿 Your cat watches the fireflies drift between the pages."
