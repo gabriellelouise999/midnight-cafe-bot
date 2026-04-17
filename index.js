@@ -1,4 +1,15 @@
 const users = {};
+
+function getUser(id) {
+  if (!users[id]) {
+    users[id] = {
+      coins: 50,
+      inventory: [],
+      catMood: "cozy"
+    };
+  }
+  return users[id];
+}const users = {};
 users[userId] = {
   coins: 50,
   character: {
@@ -426,4 +437,58 @@ const books = {
     "audio/page1.mp3",
     "audio/page2.mp3"
   ]
-}
+}client.on(Events.InteractionCreate, async interaction => {
+  if (!interaction.isButton()) return;
+
+  const user = getUser(interaction.user.id);
+
+  if (interaction.customId === 'buy_coffee') {
+    if (user.coins < 10) {
+      await interaction.reply({ content: "🌙 Not enough coins for coffee.", ephemeral: true });
+      return;
+    }
+    user.coins -= 10;
+    user.inventory.push("coffee");
+    await interaction.reply("☕ Coffee added to your inventory.");
+  }
+
+  if (interaction.customId === 'buy_cookie') {
+    if (user.coins < 5) {
+      await interaction.reply({ content: "🌙 Not enough coins for a cookie.", ephemeral: true });
+      return;
+    }
+    user.coins -= 5;
+    user.inventory.push("cookie");
+    await interaction.reply("🍪 Cookie added to your inventory.");
+  }
+
+  if (interaction.customId === 'buy_wine') {
+    if (user.coins < 15) {
+      await interaction.reply({ content: "🌙 Not enough coins for evening wine.", ephemeral: true });
+      return;
+    }
+    user.coins -= 15;
+    user.inventory.push("wine");
+    await interaction.reply("🍷 Evening wine added to your inventory.");
+  }
+
+  if (interaction.customId === 'buy_tea') {
+    if (user.coins < 12) {
+      await interaction.reply({ content: "🌙 Not enough coins for herbal tea.", ephemeral: true });
+      return;
+    }
+    user.coins -= 12;
+    user.inventory.push("tea");
+    await interaction.reply("🌿 Herbal tea added to your inventory.");
+  }
+
+  if (interaction.customId === 'buy_candle') {
+    if (user.coins < 15) {
+      await interaction.reply({ content: "🌙 Not enough coins for a candle.", ephemeral: true });
+      return;
+    }
+    user.coins -= 15;
+    user.inventory.push("candle");
+    await interaction.reply("🕯️ Candle added to your inventory.");
+  }
+});
