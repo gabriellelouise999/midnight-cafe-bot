@@ -1,4 +1,9 @@
-const users = {};
+users[userId] = {
+  coins: 50,
+  inventory: [],
+  catMood: "cozy",
+  club: null
+};const users = {};
 
 function getUser(id) {
   if (!users[id]) {
