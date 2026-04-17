@@ -748,3 +748,128 @@ hot_chocolate: {
   await interaction.reply({ embeds: [embed] });
 }"🐱 Miso settles beside the glowing mushrooms as you read."
 "🌿 Your cat watches the fireflies drift between the pages."
+"🍫 **hot chocolate** — 12 coins\n"
+if (interaction.customId === 'buy_hot_chocolate') {
+  if (user.coins < 12) {
+    await interaction.reply({ content: "🌙 Not enough coins for hot chocolate.", ephemeral: true });
+    return;
+  }
+
+  user.coins -= 12;
+  user.inventory.push("hot_chocolate");
+  await interaction.reply("🍫 Hot chocolate added to your inventory.");
+}
+hot_chocolate: {
+  mood: "cozy",
+  text: "🍫 Warm and sweet… your cat curls closer as the night softens."
+}
+new ButtonBuilder()
+  .setCustomId('buy_hot_chocolate')
+  .setLabel('🍫 hot chocolate')
+  .setStyle(ButtonStyle.Secondary)
+function getUser(id) {
+  if (!users[id]) {
+    users[id] = {
+      coins: 50,
+      inventory: [],
+      catMood: "cozy",
+      room: {
+        type: "private",
+        name: "your study nook",
+        decor: []
+      }
+    };
+  }
+  return users[id];
+}if (interaction.commandName === 'studyroom') {
+  const user = getUser(interaction.user.id);
+
+  const decorText = user.room.decor.length
+    ? user.room.decor.map(item => `• ${item}`).join('\n')
+    : "• soft lamplight\n• a quiet chair\n• your cat nearby";
+
+  const embed = new EmbedBuilder()
+    .setColor(0x8e6cf2)
+    .setTitle("🔒 your private study nook")
+    .setDescription(
+      "A hidden little room just for you.\n\n" +
+      "🌿 vines curl around the shelves\n" +
+      "✨ fireflies drift near the window\n" +
+      "🐱 your cat rests beside your books\n\n" +
+      `**decor**\n${decorText}`
+    )
+    .setFooter({ text: "enchanted library ✦ private space" });
+
+  await interaction.reply({ embeds: [embed], ephemeral: true });
+}
+const books = {
+  dickinson_hope: {
+    title: '"Hope" is the thing with feathers',
+    author: 'Emily Dickinson',
+    pages: [
+      `"Hope" is the thing with feathers -\nThat perches in the soul -\nAnd sings the tune without the words -\nAnd never stops - at all -`,
+      `And sweetest - in the Gale - is heard -\nAnd sore must be the storm -\nThat could abash the little Bird\nThat kept so many warm -`,
+      `I've heard it in the chillest land -\nAnd on the strangest Sea -\nYet - never - in Extremity,\nIt asked a crumb - of me.`
+    ]
+  }
+};
+if (interaction.commandName === 'readbook') {
+  const book = books.dickinson_hope;
+
+  const embed = new EmbedBuilder()
+    .setColor(0x8e6cf2)
+    .setTitle(`📖 ${book.title}`)
+    .setDescription(book.pages[0])
+    .setFooter({ text: `${book.author} ✦ page 1 of ${book.pages.length}` });
+
+  await interaction.reply({ embeds: [embed] });
+}
+const rooms = {
+  library: {
+    name: "enchanted library",
+    description: "Books rest in carved wooden shelves beneath twisted branches. Fireflies glow softly between the stacks.",
+    image: "FOREST_LIBRARY_IMAGE"
+  },
+  cafe: {
+    name: "forest café",
+    description: "A warm little café hidden among trees, with lantern light, tea steam, and moss beneath the windows.",
+    image: "FOREST_CAFE_IMAGE"
+  },
+  attic: {
+    name: "rainy canopy loft",
+    description: "A tucked-away loft above the forest, where rain taps softly on the glass and ivy trails along the beams.",
+    image: "FOREST_ATTIC_IMAGE"
+  },
+  bay_window: {
+    name: "mossy window nook",
+    description: "A curved window wrapped in ivy, layered with blankets and pillows, where moonlight pools across the cushions.",
+    image: "FOREST_WINDOW_IMAGE"
+  },
+  treehouse: {
+    name: "treehouse reading nook",
+    description: "A hidden room in the branches, lit by lanterns and drifting pollen-light, with shelves built into old wood.",
+    image: "TREEHOUSE_IMAGE"
+  }
+};
+[
+  { name: 'studyroom', description: 'View your private study room' },
+  { name: 'readbook', description: 'Read a book from the library' }
+]
+const decorItems = {
+  blanket: {
+    name: "soft blanket",
+    price: 20,
+    description: "A warm, soft layer for quiet reading."
+  },
+  pillow: {
+    name: "plush pillow",
+    price: 15,
+    description: "Makes every nook softer."
+  },
+  lavender_pillow: {
+    name: "lavender pillow",
+    price: 25,
+    description: "A calming little comfort for late-night reading."
+  }
+};
+
