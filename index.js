@@ -272,4 +272,70 @@ embed.setImage("YOUR_CAFE_MENU_IMAGE_URL");const embed = makeEmbed(
 );const done = makeEmbed(
   "✨ session complete",
   "You finished your reading session.\n🌙 +15 coins\n🐱 your cat purrs proudly."
-);
+);const rooms = {
+  library: {
+    name: "moonlit library",
+    image: "https://i.imgur.com/yourLibraryImage.png"
+  },
+  cafe: {
+    name: "midnight café",
+    image: "https://i.imgur.com/yourCafeImage.png"
+  },
+  attic: {
+    name: "rainy attic",
+    image: "https://i.imgur.com/yourAtticImage.png"
+  }
+};const { EmbedBuilder } = require('discord.js');
+
+if (interaction.commandName === 'shop') {
+  const embed = new EmbedBuilder()
+    .setColor(0x8e6cf2)
+    .setTitle("☕ midnight café")
+    .setDescription(
+      "A quiet space, warm light, and something soft to hold.\n\n" +
+      "☕ **coffee** — 10 coins\n" +
+      "🍪 **cookie** — 5 coins\n" +
+      "🍷 **evening wine** — 15 coins\n" +
+      "🌿 **herbal tea** — 12 coins\n" +
+      "🕯️ **candle** — 15 coins\n\n" +
+      "*your cat watches from the windowsill* 🐱"
+    )
+    .setFooter({ text: "gabrielle’s midnight café ✦ soft night menu" })
+    .setTimestamp();
+
+  await interaction.reply({ embeds: [embed] });
+}
+if (item === 'coffee' && user.coins >= 10) {
+  user.coins -= 10;
+  await interaction.reply(
+    "☕ You wrap your hands around a warm cup.\n🌙 The café quiets… your cat settles beside you."
+  );
+}
+
+if (item === 'cookie' && user.coins >= 5) {
+  user.coins -= 5;
+  await interaction.reply(
+    "🍪 A soft, warm cookie.\n🐱 Your cat watches closely… waiting for crumbs."
+  );
+}
+
+if (item === 'wine' && user.coins >= 15) {
+  user.coins -= 15;
+  await interaction.reply(
+    "🍷 A quiet evening drink.\n🕯️ The light softens, and the night feels slower."
+  );
+}
+
+if (item === 'tea' && user.coins >= 12) {
+  user.coins -= 12;
+  await interaction.reply(
+    "🌿 A calming herbal tea.\n☁️ The air feels lighter, and your thoughts slow gently."
+  );
+}
+
+if (item === 'candle' && user.coins >= 15) {
+  user.coins -= 15;
+  await interaction.reply(
+    "🕯️ You light a small candle.\n✨ The room glows warmer… your cat curls closer."
+  );
+}embed.setImage("https://i.imgur.com/YOUR_CAFE_IMAGE.png");
